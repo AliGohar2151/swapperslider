@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soft Modules Hub</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style-type: none;
+            text-decoration: none;
+        }
+
+        :root {
+            --primary: #282155;
+            --white: #ffffff;
+            --bg: #f5f5f5;
+            --hover-focus-active: #045032;
+            /* Green color for hover, focus, and active states */
+        }
+
+        html {
+            font-size: 45%;
+            font-family: "Montserrat", sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        @media (min-width: 1440px) {
+            html {
+                zoom: 1.5;
+            }
+        }
+
+        @media (min-width: 2560px) {
+            html {
+                zoom: 1.7;
+            }
+        }
+
+        @media (min-width: 3860px) {
+            html {
+                zoom: 2.5;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 1.3rem;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border-radius: 1rem;
+            background: #797979;
+            transition: all 0.5s ease-in-out;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #222224;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f9f9f9;
+        }
+
+        body {
+            font-size: 1.3rem;
+            background: var(--bg);
+        }
+
+        .container {
+            max-width: 124rem;
+            padding: 0 1rem;
+            margin: 0 auto;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .section-heading {
+            font-size: 2.5rem;
+            color: var(--primary);
+            padding: 2rem 0;
+            animation: fadeInLeft 1s forwards;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+
+
+        #modules {
+            padding: 4rem 0;
+        }
+
+        @media (max-width:1440px) {
+            #modules {
+                padding: 7rem 0;
+            }
+        }
+
+        #modules .module-slider {
+            height: 52rem;
+            padding: 2rem 0;
+            position: relative;
+        }
+
+        @media (max-width:500px) {
+            #modules .module-slider {
+                height: 45rem;
+            }
+        }
+
+        .module-slide {
+            width: 37rem;
+            height: 42rem;
+            position: relative;
+        }
+
+        @media (max-width:500px) {
+            .module-slide {
+                width: 28rem !important;
+                height: 36rem !important;
+            }
+
+            .module-slide .module-slide-img img {
+                width: 28rem !important;
+                height: 36rem !important;
+            }
+        }
+
+        .module-slide .module-slide-img img {
+            width: 37rem;
+            height: 42rem;
+            border-radius: 2rem;
+            object-fit: cover;
+        }
+
+        .module-slide .module-slide-content {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .module-slide-content .module-slide-content-bottom {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            color: var(--white);
+        }
+
+        .module-description {
+            padding-top: 1rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Button Styles */
+        .view_button {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--white);
+            background-color: var(--primary);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .view_button:hover,
+        .view_button:focus,
+        .view_button:active {
+            background-color: var(--hover-focus-active);
+            transform: scale(1.05);
+        }
+
+        .view_button:active {
+            transform: scale(0.95);
+        }
+
+        .view_button:focus {
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(72, 237, 77, 0.5);
+        }
+
+        /* Ensuring button scales well on different screen sizes */
+        @media (max-width: 500px) {
+            .view_button {
+                font-size: 1.4rem;
+                padding: 0.8rem 1.6rem;
+            }
+        }
+
+        .swiper-slide-shadow-left,
+        .swiper-slide-shadow-right {
+            display: none;
+        }
+
+        .module-slider-control {
+            position: relative;
+            bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .module-slider-control .swiper-button-next {
+            left: 58% !important;
+            transform: translateX(-58%) !important;
+        }
+
+        @media (max-width:990px) {
+            .module-slider-control .swiper-button-next {
+                left: 70% !important;
+                transform: translateX(-70%) !important;
+            }
+        }
+
+        @media (max-width:450px) {
+            .module-slider-control .swiper-button-next {
+                left: 80% !important;
+                transform: translateX(-80%) !important;
+            }
+        }
+
+        @media (max-width:990px) {
+            .module-slider-control .swiper-button-prev {
+                left: 30% !important;
+                transform: translateX(-30%) !important;
+            }
+        }
+
+        @media (max-width:450px) {
+            .module-slider-control .swiper-button-prev {
+                left: 20% !important;
+                transform: translateX(-20%) !important;
+            }
+        }
+
+        .module-slider-control .slider-arrow {
+            background: var(--white);
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 50%;
+            left: 42%;
+            transform: translateX(-42%);
+            filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
+        }
+
+        .module-slider-control .slider-arrow ion-icon {
+            font-size: 2rem;
+            color: #222224;
+        }
+
+        .module-slider-control .slider-arrow::after {
+            content: '';
+        }
+
+        .module-slider-control .swiper-pagination {
+            position: relative;
+            width: 15rem;
+            bottom: 1rem;
+        }
+
+        .module-slider-control .swiper-pagination .swiper-pagination-bullet {
+            filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
+        }
+
+        .module-slider-control .swiper-pagination .swiper-pagination-bullet-active {
+            background: var(--primary);
+        }
+
+        .footer {
+            text-align: center;
+            margin-bottom: 2px;
+            padding: 1rem 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <section id="modules">
+        <div class="container">
+
+            <h1 class="text-center section-heading">Welcome to Soft Modules Hub</h1>
+        </div>
+        <div class="container">
+            <div class="swiper module-slider">
+                <div class="swiper-wrapper">
+                    <!-- Slide-start -->
+                    <div class="swiper-slide module-slide">
+                        <div class="module-slide-img">
+                            <img src="https://raw.githubusercontent.com/AliGohar2151/slider/main/prestashop-bg.png"
+                                alt="PrestaShop">
+                        </div>
+                        <div class="module-slide-content">
+
+                            <div class="module-slide-content-bottom">
+                                <h2 class="module-name">
+                                    Presta Shop Module
+                                </h2>
+                                <h3 class="module-description">
+                                    <span>We are providing custom web modules</span>
+
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide-end -->
+                    <!-- Slide-start -->
+                    <div class="swiper-slide module-slide">
+                        <div class="module-slide-img">
+                            <img src="https://raw.githubusercontent.com/AliGohar2151/slider/main/django-bg.png"
+                                alt="Django">
+                        </div>
+                        <div class="module-slide-content">
+                            <div class="module-slide-content-bottom">
+                                <h2 class="module-name">
+                                    Django Modules
+                                </h2>
+                                <h3 class="module-description">
+                                    <span>Best custom Django modules</span>
+
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide-end -->
+                    <!-- Slide-start -->
+                    <div class="swiper-slide module-slide">
+                        <div class="module-slide-img">
+                            <img src="https://raw.githubusercontent.com/AliGohar2151/slider/main/react-bg.png"
+                                alt="react">
+                        </div>
+                        <div class="module-slide-content">
+                            <div class="module-slide-content-bottom">
+                                <h2 class="module-name">
+                                    React JS Modules
+                                </h2>
+                                <h3 class="module-description">
+                                    <span>Custom React JS modules</span>
+
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide-end -->
+                    <!-- Slide-start -->
+                    <div class="swiper-slide module-slide">
+                        <div class="module-slide-img">
+                            <img src="https://raw.githubusercontent.com/AliGohar2151/slider/main/final-bg.png"
+                                alt="final">
+                        </div>
+                        <div class="module-slide-content">
+                            <div class="module-slide-content-bottom">
+                                <h2 class="module-name">
+                                    Buy now and get 20% OFF on all modules
+                                </h2>
+                                <h3 class="module-description">
+                                    <span>
+                                        <button id="viewStoreButton" class="view_button">View Store</button>
+                                    </span>
+
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide-end -->
+                </div>
+
+                <div class="module-slider-control">
+                    <div class="swiper-button-prev slider-arrow">
+                        <ion-icon name="arrow-back-outline"></ion-icon>
+                    </div>
+                    <div class="swiper-button-next slider-arrow">
+                        <ion-icon name="arrow-forward-outline"></ion-icon>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 Soft Modules Hub. All Rights Reserved.</p>
+    </footer>
+    <audio id="slideChangeSound" src="clicksound.wav" preload="auto"></audio>
+
+
+    <<!-- Include necessary scripts -->
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+
+        <script>
+            // Function to initialize Swiper
+            function initSwiper() {
+                var moduleSlider = new Swiper('.module-slider', {
+                    effect: 'coverflow',
+                    grabCursor: true,
+                    centeredSlides: true,
+                    loop: true,
+                    slidesPerView: 'auto',
+                    coverflowEffect: {
+                        rotate: 0,
+                        stretch: 0,
+                        depth: 100,
+                        modifier: 2.5,
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    on: {
+                        slideChange: function () {
+                            playSlideChangeSound();
+                        },
+                        transitionEnd: function () {
+                            playSlideChangeSound();
+                        }
+                    }
+                });
+
+                function playSlideChangeSound() {
+                    var sound = document.getElementById('slideChangeSound');
+                    sound.currentTime = 0; // Rewind to the start
+                    sound.play();
+                }
+            }
+
+            // Event listener for when the DOM is fully loaded
+            document.addEventListener('DOMContentLoaded', function () {
+                // Initialize Swiper
+                initSwiper();
+
+                // Event delegation for the View Store button
+                document.addEventListener('click', function (event) {
+                    if (event.target && event.target.id === 'viewStoreButton') {
+                        window.location.href = 'http://softmoduleshub.com/shop/'; // Replace with your desired URL
+                    }
+                });
+            });
+        </script>
+
+</body>
+
+</html>
